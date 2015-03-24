@@ -1,0 +1,5 @@
+# Test server for polymer app
+
+directory public/finished/ contains the polymer files
+
+http://localhost:4001/finished/

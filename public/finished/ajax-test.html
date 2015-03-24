@@ -1,0 +1,41 @@
+<link rel="import" href="../components/core-ajax/core-ajax.html">
+<polymer-element name="greeting-tag" attributes="company">
+  <!-- outermost template defines the element's shadow DOM -->
+  <template>
+      <h1> {{ company }} Registration </h1>
+      <input id="firstName" value="{{firstName}}" placeholder="first name"> </p>
+      <input id="lastName" value="{{lastName}}" placeholder="last name"> </p>
+      <input id="email" value="{{email}}" placeholder="email"> </p>
+      <input id="password" value="{{password}}" placeholder="password..."> </p>
+      <button on-tap="{{foo}}">Register Dude Fool!</button>
+      
+      <core-ajax
+      id="cajax"
+           
+      url="http://localhost:4001"
+      params=""
+      handleAs="json"
+      on-core-response="{{handleChart}}">Core Ajax folks </core-ajax>
+
+  </template>
+  <script>
+    Polymer('greeting-tag', {
+      foo: function(){    
+           console.log(this.firstName + " YAYish !");      
+      console.log(this.lastName + " YAY!");
+      console.log(this.email + "YAy!");
+      console.log(this.password + "Yay!");
+      this.$.firstName.focus();
+      this.$.cajax.go();
+      
+      },
+      
+      handleChart: function() {
+        console.log("Success!");
+      }
+     
+    });
+  </script>
+</polymer-element>
+    
+<greeting-tag company="Keller Williams"></greeting-tag>
