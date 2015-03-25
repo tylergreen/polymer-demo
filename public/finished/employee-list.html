@@ -1,0 +1,42 @@
+<polymer-element name="employee-list" >
+<template>
+    <ul>
+      <template repeat="{{s in salutations}}">
+        <li> 
+          First Name<input type="text"></input>
+          Last Name<input type="text"></input>
+          <button on-tap="{{removeEmployee}}">Remove Employee </button>
+        </li>
+      </template>
+    </ul>
+    <button on-tap="{{addEmployee}}">Add Employee </button>  
+ </template>
+  <script>
+    Polymer('employee-list', {
+      counter: 0,
+      collection: [],
+      click: function() {
+          console.log("YAY!"); },
+      ready: function() {
+      
+        // populate the element’s data model
+        // (the salutations array)
+         this.addEmployee = function() {
+          console.log("YAY! " + this.counter ); 
+          this.counter ++;
+          this.salutations.push({what: 'Another', who: 'Day' });
+      },
+        this.salutations = [
+          {what: 'Hello', who: 'World'},
+          {what: 'GoodBye', who: 'DOM APIs'},
+          {what: 'Hello', who: 'Declarative'},
+          {what: 'GoodBye', who: 'Imperative'}
+        ];
+      }
+    });
+  </script>
+
+</polymer-element>
+    
+
+
