@@ -1,0 +1,23 @@
+<polymer-element name="employee-row" attributes="firstName lastName index">
+  <template>
+    <li> 
+      First Name<input type="text"></input>
+      Last Name<input type="text"></input>
+      Index: {{index}}
+      <button on-tap="{{removeEmployee}}">Remove Employee </button>
+    </li>
+  </template>
+  <script>
+    Polymer('employee-row', {
+      removeEmployee: function() {
+        console.log("firing remove-employee! " + this.index);
+        this.fire('ouch', {index: this.index});
+       // fire(type, detail, targetNode, bubbles?, cancelable?)
+      }
+    });
+  </script>
+
+</polymer-element>
+    
+
+

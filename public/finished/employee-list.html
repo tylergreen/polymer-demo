@@ -1,36 +1,34 @@
-<polymer-element name="employee-list" >
+<link rel="import" href="employee-row.html">
+
+<polymer-element name="employee-list" on-ouch="{{removeEmployee}}">
 <template>
     <ul>
       <template repeat="{{s in salutations}}">
-        <li> 
-          First Name<input type="text"></input>
-          Last Name<input type="text"></input>
-          <button on-tap="{{removeEmployee}}">Remove Employee </button>
-        </li>
+        <employee-row index="{{s.index}}">HI! </employee-row>
       </template>
     </ul>
     <button on-tap="{{addEmployee}}">Add Employee </button>  
  </template>
   <script>
     Polymer('employee-list', {
-      counter: 0,
-      collection: [],
-      click: function() {
-          console.log("YAY!"); },
-      ready: function() {
-      
+      counter: 5,
+    removeEmployee: function(e) {
+      this.salutations = this.salutations.filter(function(item) {
+        return item.index !== e.detail.index;
+    });
+    },
+    ready: function() {
         // populate the element’s data model
         // (the salutations array)
          this.addEmployee = function() {
-          console.log("YAY! " + this.counter ); 
           this.counter ++;
-          this.salutations.push({what: 'Another', who: 'Day' });
+          this.salutations.push({firstName:'', lastName:'', index: this.counter });
       },
         this.salutations = [
-          {what: 'Hello', who: 'World'},
-          {what: 'GoodBye', who: 'DOM APIs'},
-          {what: 'Hello', who: 'Declarative'},
-          {what: 'GoodBye', who: 'Imperative'}
+          {what: 'Hello', who: 'World', index: 0},
+          {what: 'GoodBye', who: 'DOM APIs', index: 1},
+          {what: 'Hello', who: 'Declarative', index: 2},
+          {what: 'GoodBye', who: 'Imperative', index: 3}
         ];
       }
     });
